@@ -1,0 +1,267 @@
+[gd_scene load_steps=20 format=3 uid="uid://cipq26x7x55b5"]
+
+[ext_resource type="Script" path="res://scripts/foe.gd" id="1_76hap"]
+[ext_resource type="Texture2D" uid="uid://c0hhxutkvwkvx" path="res://assets/other/exclamation-mark.svg" id="2_3dhfe"]
+[ext_resource type="Texture2D" uid="uid://b034tkdxjks0l" path="res://assets/other/angry.png" id="3_5rhip"]
+[ext_resource type="Texture2D" uid="uid://f0ffxg1tjw14" path="res://assets/characters/SheepHead.svg" id="4_o4xo1"]
+[ext_resource type="Script" path="res://components/move_config_component.gd" id="5_p2fk8"]
+[ext_resource type="Script" path="res://components/area_sense_component.gd" id="6_32klq"]
+[ext_resource type="Script" path="res://components/state_machine_component.gd" id="7_a3sh4"]
+[ext_resource type="Script" path="res://components/states/idle_foe_state.gd" id="8_b7wqc"]
+[ext_resource type="Script" path="res://components/states/throwing_state.gd" id="10_xvji3"]
+[ext_resource type="Script" path="res://components/states/stun_foe_state.gd" id="10_yqdli"]
+[ext_resource type="PackedScene" uid="uid://dxim7ioxf3b78" path="res://objects/rock_projectile.tscn" id="11_vbbkg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c32eb"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="Animation" id="Animation_gitk1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shock:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shock:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_efkr4"]
+resource_name = "alert"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shock:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shock:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1lpjg"]
+resource_name = "rage"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Angry:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Angry:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Angry:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_34rkw"]
+resource_name = "reset2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Angry:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ag766"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u54vq"]
+_data = {
+"RESET": SubResource("Animation_gitk1"),
+"alert": SubResource("Animation_efkr4"),
+"rage": SubResource("Animation_1lpjg"),
+"reset2": SubResource("Animation_34rkw"),
+"shake": SubResource("Animation_ag766")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk26s"]
+radius = 125.0
+
+[node name="ThrowingFoe" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_76hap")
+
+[node name="Shock" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.175)
+texture = ExtResource("2_3dhfe")
+
+[node name="Angry" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -16)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_5rhip")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_o4xo1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_c32eb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u54vq")
+}
+
+[node name="MoveConfigComponent" type="Node" parent="."]
+script = ExtResource("5_p2fk8")
+
+[node name="AreaSenseComponent" type="Area2D" parent="." node_paths=PackedStringArray("host")]
+collision_layer = 128
+collision_mask = 2
+script = ExtResource("6_32klq")
+host = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSenseComponent"]
+shape = SubResource("CircleShape2D_dk26s")
+
+[node name="StateMachineComponent" type="Node" parent="." node_paths=PackedStringArray("host", "initial_state")]
+script = ExtResource("7_a3sh4")
+host = NodePath("..")
+initial_state = NodePath("IdleFoeState")
+
+[node name="IdleFoeState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("sensor", "action")]
+script = ExtResource("8_b7wqc")
+sensor = NodePath("../../AreaSenseComponent")
+action = NodePath("../ThrowingState")
+
+[node name="StunFoeState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("animations", "idle", "action")]
+script = ExtResource("10_yqdli")
+animations = NodePath("../../AnimationPlayer")
+idle = NodePath("../IdleFoeState")
+action = NodePath("../ThrowingState")
+
+[node name="ThrowingState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("animations", "sensor", "goback")]
+script = ExtResource("10_xvji3")
+animations = NodePath("../../AnimationPlayer")
+projectile = ExtResource("11_vbbkg")
+sensor = NodePath("../../AreaSenseComponent")
+goback = NodePath("../IdleFoeState")

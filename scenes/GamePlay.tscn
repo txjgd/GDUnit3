@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://s6lsx07a0lq4"]
+
+[ext_resource type="Script" path="res://scripts/game_play.gd" id="1_ifw3v"]
+[ext_resource type="PackedScene" uid="uid://bxkia4gs3h516" path="res://scenes/HUD.tscn" id="2_y5pv8"]
+
+[node name="GamePlay" type="Node2D" groups=["game_play_group"]]
+script = ExtResource("1_ifw3v")
+
+[node name="Map" type="Node2D" parent="." groups=["map_container"]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" groups=["hud_group"] instance=ExtResource("2_y5pv8")]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d30tmrxlyd3jd"]
+
+[ext_resource type="Texture2D" uid="uid://oaatltjilxhd" path="res://assets/other/For Items2_Oramge.png" id="1_ho8d5"]
+[ext_resource type="Script" path="res://scripts/pickup.gd" id="1_m3kdn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5w6rk"]
+radius = 5.0
+
+[node name="Pickup" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_m3kdn")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ho8d5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_5w6rk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

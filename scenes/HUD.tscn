@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxkia4gs3h516"]
+
+[ext_resource type="FontFile" uid="uid://dpojb7kysb4ux" path="res://assets/fonts/Jersey10-Regular.ttf" id="1_1skf4"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToGrabLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 72.0
+offset_right = 155.0
+offset_bottom = 103.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_1skf4")
+theme_override_font_sizes/font_size = 28
+text = "Fruit to Grab:"
+horizontal_alignment = 2
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 72.0
+offset_right = 299.0
+offset_bottom = 103.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_1skf4")
+theme_override_font_sizes/font_size = 28
+text = "0"
+
+[node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 155.0
+offset_bottom = 63.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_1skf4")
+theme_override_font_sizes/font_size = 28
+text = "Score:"
+horizontal_alignment = 2
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 32.0
+offset_right = 299.0
+offset_bottom = 63.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_1skf4")
+theme_override_font_sizes/font_size = 28
+text = "0"

@@ -1,0 +1,6 @@
+[gd_resource type="FontVariation" load_steps=2 format=3 uid="uid://kvm0navcdw1m"]
+
+[ext_resource type="FontFile" uid="uid://bwagmc6w8aeyt" path="res://resources/main_font.tres" id="1_wrpm1"]
+
+[resource]
+base_font = ExtResource("1_wrpm1")
