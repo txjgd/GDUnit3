@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d2nmdiysdcdcr"]
 
-[ext_resource type="Script" path="res://scripts/game_over.gd" id="1_ahc65"]
+[ext_resource type="Script" path="res://scripts/game_win.gd" id="1_oav5s"]
 [ext_resource type="FontFile" uid="uid://dpojb7kysb4ux" path="res://assets/fonts/Jersey10-Regular.ttf" id="2_2mhas"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_or801"]
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ahc65")
+script = ExtResource("1_oav5s")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1

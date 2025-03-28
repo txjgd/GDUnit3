@@ -29,10 +29,15 @@ func load_map( which :int ) -> void:
 	# add the new map
 	var map = scene.instantiate()
 	map_container.add_child( map )
+	print("map added")
 	
 func next_map():
 	if current_map >= maps.size():
-		get_tree().change_scene_to_file( "res://scenes/game_win.tscn" )
+		var tree = get_tree()
+		if tree:
+			current_map = 0
+			get_tree().call_deferred("change_scene_to_file", "res://scenes/game_win.tscn")
+			#tree.change_scene_to_file( "res://scenes/game_win.tscn" )
 		return
 		
 	load_map( current_map )
@@ -42,4 +47,5 @@ func game_over() -> void:
 	current_map = 0
 	var tree = get_tree()
 	if tree:
-		tree.change_scene_to_file("res://scenes/game_over.tscn")
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
+		#tree.change_scene_to_file("res://scenes/game_over.tscn")

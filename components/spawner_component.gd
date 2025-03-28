@@ -18,15 +18,20 @@ func _ready():
 	if get_child_count() == 0:
 		print( "ERROR! No Marker2Ds set" )
 
+	print( "spawn count = ", spawn_count )
 	game_play = get_tree().get_first_node_in_group( "game_play_group" )
 	game_play.set_amount_to_gather( spawn_count )
+	print( game_play )
 	spawn()
 
 func picked_up( who :Node ) -> void:
 	game_play.note_item_picked_up( time_since_spawn )
 	who.queue_free()
-	await get_tree().create_timer(0.5).timeout
-	spawn()
+	
+	var tree = get_tree()
+	if tree:
+		await tree.create_timer(0.5).timeout
+		spawn()
 
 
 func spawn() -> void:
