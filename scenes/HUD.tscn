@@ -45,6 +45,18 @@ theme_override_font_sizes/font_size = 28
 text = "Score:"
 horizontal_alignment = 2
 
+[node name="ScoreLabel2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 104.0
+offset_right = 251.0
+offset_bottom = 135.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("1_1skf4")
+theme_override_font_sizes/font_size = 28
+text = "Hello World"
+horizontal_alignment = 2
+
 [node name="Score" type="Label" parent="."]
 layout_mode = 0
 offset_left = 168.0

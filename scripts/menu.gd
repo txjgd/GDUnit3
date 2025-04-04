@@ -1,5 +1,8 @@
 extends Control
 
+func _ready():
+	print("Hello World")
+	$CenterContainer/VBoxContainer/Subtitle.text = "Hello World"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

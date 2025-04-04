@@ -20,7 +20,7 @@ func _ready():
 
 	print( "spawn count = ", spawn_count )
 	game_play = get_tree().get_first_node_in_group( "game_play_group" )
-	game_play.set_amount_to_gather( spawn_count )
+	game_play.add_amount_to_gather( spawn_count )
 	print( game_play )
 	spawn()
 

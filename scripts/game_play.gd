@@ -13,8 +13,8 @@ func _ready():
 	pass # Replace with function body.
 
 
-func set_amount_to_gather( amt :int ) -> void:
-	remaining = amt
+func add_amount_to_gather( amt :int ) -> void:
+	remaining += amt
 	hud_count.text = str( remaining )
 
 func note_item_picked_up( time :float ):
