@@ -1,0 +1,264 @@
+[gd_scene load_steps=17 format=3 uid="uid://jqnytdbl2uib"]
+
+[ext_resource type="Script" path="res://scripts/boss_foe.gd" id="1_uslev"]
+[ext_resource type="Texture2D" uid="uid://c0hhxutkvwkvx" path="res://assets/other/exclamation-mark.svg" id="2_fb8vd"]
+[ext_resource type="Texture2D" uid="uid://b034tkdxjks0l" path="res://assets/other/angry.png" id="3_wuk8u"]
+[ext_resource type="Texture2D" uid="uid://dqc1fx288t786" path="res://assets/characters/CowHead.svg" id="4_boiqo"]
+[ext_resource type="Script" path="res://components/move_config_component.gd" id="5_ftuyc"]
+[ext_resource type="Script" path="res://components/area_sense_component.gd" id="6_ip7wr"]
+[ext_resource type="Script" path="res://components/state_machine_component.gd" id="7_poeq0"]
+[ext_resource type="Script" path="res://components/states/chasing_anywhere_foe_state.gd" id="9_ish2j"]
+[ext_resource type="Script" path="res://components/states/bum_rush_state.gd" id="12_ra5cc"]
+
+[sub_resource type="Animation" id="Animation_gitk1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shock:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shock:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shock:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_efkr4"]
+resource_name = "alert"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shock:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Shock:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1lpjg"]
+resource_name = "rage"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Angry:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Angry:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Angry:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_34rkw"]
+resource_name = "reset2"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shock:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Angry:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ag766"]
+resource_name = "shake"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visual:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(2, 0), Vector2(-1, 0), Vector2(1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u54vq"]
+_data = {
+"RESET": SubResource("Animation_gitk1"),
+"alert": SubResource("Animation_efkr4"),
+"rage": SubResource("Animation_1lpjg"),
+"reset2": SubResource("Animation_34rkw"),
+"shake": SubResource("Animation_ag766")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dk26s"]
+radius = 222.056
+
+[node name="Foe" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
+script = ExtResource("1_uslev")
+
+[node name="Shock" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.175)
+texture = ExtResource("2_fb8vd")
+
+[node name="Angry" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -80)
+texture = ExtResource("3_wuk8u")
+
+[node name="Visual" type="Sprite2D" parent="."]
+texture = ExtResource("4_boiqo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+path_postprocessing = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_u54vq")
+}
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, -1)
+polygon = PackedVector2Array(0, -44, 13, -43, 23, -39, 33, -42, 42, -57, 47, -57, 49, -35, 41, -21, 50, -12, 64, -7, 54, 5, 44, 8, 37, 7, 30, 25, 22, 38, 19, 49, 10, 56, 0, 57, -13, 55, -19, 47, -24, 34, -32, 20, -36, 4, -44, 6, -55, 4, -65, -7, -51, -12, -40, -21, -51, -36, -49, -55, -43, -56, -34, -42, -24, -39, -14, -43)
+
+[node name="MoveConfigComponent" type="Node" parent="."]
+script = ExtResource("5_ftuyc")
+
+[node name="AreaSenseComponent" type="Area2D" parent="." node_paths=PackedStringArray("host")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("6_ip7wr")
+host = NodePath("..")
+range = 250.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSenseComponent"]
+shape = SubResource("CircleShape2D_dk26s")
+
+[node name="StateMachineComponent" type="Node" parent="." node_paths=PackedStringArray("host", "initial_state")]
+script = ExtResource("7_poeq0")
+host = NodePath("..")
+initial_state = NodePath("ChasingAnywhereFoeState")
+
+[node name="BumRushState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("animations", "sensor", "chasing", "goback")]
+script = ExtResource("12_ra5cc")
+animations = NodePath("../../AnimationPlayer")
+sensor = NodePath("../../AreaSenseComponent")
+chasing = NodePath("../ChasingAnywhereFoeState")
+goback = NodePath("")
+speed = 250.0
+rush_distance = 300.0
+
+[node name="ChasingAnywhereFoeState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("animations", "sensor", "rush", "nav")]
+script = ExtResource("9_ish2j")
+animations = NodePath("../../AnimationPlayer")
+sensor = NodePath("../../AreaSenseComponent")
+rush = NodePath("../BumRushState")
+speed = 125.0
+nav = NodePath("../../NavigationAgent2D")

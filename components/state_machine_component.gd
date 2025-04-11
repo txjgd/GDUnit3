@@ -24,7 +24,7 @@ func transition_to( s :StateComponent ):
 	state.enter( prev_state )
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	var new_state = state.running( delta )
 	if new_state:
 		transition_to( new_state )

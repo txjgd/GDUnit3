@@ -4,7 +4,9 @@ var final_score :int = 0
 
 var maps = [
 	"res://scenes/zone1.tscn",
-	"res://scenes/zone2.tscn"
+	"res://scenes/zone2.tscn",
+	"res://scenes/boss_zone1.tscn",
+	"res://scenes/zone3.tscn",
 	]
 
 var current_map :int = 0

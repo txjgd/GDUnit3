@@ -3,9 +3,10 @@ extends StateComponent
 
 @export var animations :AnimationPlayer
 @export var sensor  :AreaSenseComponent
-@export var chasing :ChasingFoeState
+@export var chasing :StateComponent
 @export var goback  :GotoPostState
 @export var speed   :float = 200
+@export var rush_trigger_distance :float = 60
 @export var rush_distance :float = 200
 var rush_loc :Vector2
 
@@ -21,7 +22,9 @@ func running( delta :float ) -> StateComponent:
 		host.move_and_slide()
 		return null
 	
-	if sensor.is_in_range():
-		return chasing
-	else:
+	print("rush finished")
+	if sensor.is_in_range() == false and goback:
 		return goback
+
+	print( "return to chasing" )
+	return chasing
