@@ -3,6 +3,7 @@ extends Node
 var final_score :int = 0
 
 var maps = [
+	"res://scenes/boss_zone1.tscn",
 	"res://scenes/zone1.tscn",
 	"res://scenes/zone2.tscn",
 	"res://scenes/boss_zone1.tscn",
@@ -51,3 +52,6 @@ func game_over() -> void:
 	if tree:
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
 		#tree.change_scene_to_file("res://scenes/game_over.tscn")
+
+func reset_score() -> void:
+	final_score = 0

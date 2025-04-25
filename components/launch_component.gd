@@ -13,7 +13,7 @@ var cooldown :float = 0
 # launch will create the projectile as a child of the specified
 # node. It will return it so other things can be set in the 
 # client
-func launch() -> Node2D:
+func activate() -> Node2D:
 	if cooldown > 0:
 		return null
 	

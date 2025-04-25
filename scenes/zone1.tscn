@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://c3ndqa1xsjbn5"]
 
 [ext_resource type="TileSet" uid="uid://ixudtwf5mhpv" path="res://resources/kenney_rogue_like.tres" id="1_nffip"]
-[ext_resource type="PackedScene" uid="uid://p28krnp2ox7d" path="res://objects/player.tscn" id="2_byt2v"]
+[ext_resource type="PackedScene" uid="uid://p28krnp2ox7d" path="res://objects/fox.tscn" id="2_byt2v"]
 [ext_resource type="PackedScene" uid="uid://bfegvcssuo345" path="res://objects/foe.tscn" id="3_nl877"]
 [ext_resource type="PackedScene" uid="uid://d30tmrxlyd3jd" path="res://objects/pickup.tscn" id="4_dwpvj"]
 [ext_resource type="PackedScene" uid="uid://cipq26x7x55b5" path="res://objects/foe_thrower.tscn" id="4_gpqj4"]

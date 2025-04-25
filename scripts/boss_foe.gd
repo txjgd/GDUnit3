@@ -18,3 +18,7 @@ func take_damage( amt: float ) -> void:
 
 func is_enemy() -> bool :
 	return true
+
+
+func _on_hurtbox_body_entered(body):
+	pass # Replace with function body.

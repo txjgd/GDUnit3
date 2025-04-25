@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://p28krnp2ox7d"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_crw6n"]
-[ext_resource type="Texture2D" uid="uid://buerh0uabl438" path="res://assets/characters/CatHead.svg" id="1_xs30e"]
 [ext_resource type="Script" path="res://components/move_config_component.gd" id="2_adh8y"]
+[ext_resource type="Texture2D" uid="uid://dilsoqda6g1hv" path="res://assets/characters/FoxHead.svg" id="2_aujar"]
 [ext_resource type="Script" path="res://components/basic_move_input_component.gd" id="3_n3a1r"]
 [ext_resource type="Script" path="res://components/aim_state_component.gd" id="4_bujos"]
 [ext_resource type="Script" path="res://components/launch_component.gd" id="5_gxu8c"]
@@ -18,7 +18,7 @@ script = ExtResource("1_crw6n")
 
 [node name="Visual" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_xs30e")
+texture = ExtResource("2_aujar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.1, 0.1)

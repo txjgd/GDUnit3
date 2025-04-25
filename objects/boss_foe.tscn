@@ -193,8 +193,7 @@ _data = {
 "shake": SubResource("Animation_ag766")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_dk26s"]
-radius = 222.056
+[sub_resource type="CircleShape2D" id="CircleShape2D_64ce3"]
 
 [node name="Foe" type="CharacterBody2D"]
 collision_layer = 8
@@ -218,6 +217,9 @@ texture = ExtResource("4_boiqo")
 path_desired_distance = 5.0
 target_desired_distance = 5.0
 path_postprocessing = 1
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(1, 0.0901961, 1, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -239,19 +241,18 @@ host = NodePath("..")
 range = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaSenseComponent"]
-shape = SubResource("CircleShape2D_dk26s")
+shape = SubResource("CircleShape2D_64ce3")
 
 [node name="StateMachineComponent" type="Node" parent="." node_paths=PackedStringArray("host", "initial_state")]
 script = ExtResource("7_poeq0")
 host = NodePath("..")
 initial_state = NodePath("ChasingAnywhereFoeState")
 
-[node name="BumRushState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("animations", "sensor", "chasing", "goback")]
+[node name="BumRushState" type="Node" parent="StateMachineComponent" node_paths=PackedStringArray("animations", "sensor", "chasing")]
 script = ExtResource("12_ra5cc")
 animations = NodePath("../../AnimationPlayer")
 sensor = NodePath("../../AreaSenseComponent")
 chasing = NodePath("../ChasingAnywhereFoeState")
-goback = NodePath("")
 speed = 250.0
 rush_distance = 300.0
 

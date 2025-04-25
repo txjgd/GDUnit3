@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdw12el53mowb"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_kun62"]
+[ext_resource type="Texture2D" uid="uid://buerh0uabl438" path="res://assets/characters/CatHead.svg" id="2_nwhjk"]
+[ext_resource type="Script" path="res://components/move_config_component.gd" id="3_ecxxr"]
+[ext_resource type="Script" path="res://components/basic_move_input_component.gd" id="4_1je18"]
+[ext_resource type="Script" path="res://components/aim_state_component.gd" id="5_fa04b"]
+[ext_resource type="Script" path="res://components/dash_component.gd" id="6_t5v24"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wpqta"]
+radius = 60.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 25
+script = ExtResource("1_kun62")
+
+[node name="Visual" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_nwhjk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.1, 0.1)
+shape = SubResource("CircleShape2D_wpqta")
+
+[node name="MoveConfigComponent" type="Node" parent="."]
+script = ExtResource("3_ecxxr")
+speed = 50.0
+
+[node name="BasicMoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("body", "config")]
+script = ExtResource("4_1je18")
+body = NodePath("..")
+config = NodePath("../MoveConfigComponent")
+
+[node name="AimStateComponent" type="Node" parent="." node_paths=PackedStringArray("origin")]
+script = ExtResource("5_fa04b")
+origin = NodePath("..")
+
+[node name="DashComponent" type="Node" parent="." node_paths=PackedStringArray("body", "mover")]
+script = ExtResource("6_t5v24")
+body = NodePath("..")
+mover = NodePath("../BasicMoveInputComponent")
